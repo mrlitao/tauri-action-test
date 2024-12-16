@@ -38,7 +38,7 @@ const createWebview = async () => {
   // emit an event to the backend
   await webview.emit("some-event", "data");
   // listen to an event from the backend
-  const unlisten = await webview.listen("event-name", e => { });
+  const unlisten = await webview.listen("event-name", _e => { });
   unlisten();
 }
 

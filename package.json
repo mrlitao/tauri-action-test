@@ -13,7 +13,6 @@
     "lint:fix": "eslint. --ext.js,.ts,.vue --fix",
     "format": "prettier --write.",
     "format:check": "prettier --check.",
-    "prepare": "husky install",
     "postinstall": "npm run typecheck",
     "dev": "vite",
     "build": "vite build",
@@ -35,11 +34,11 @@
     "@vitejs/plugin-vue": "^5.0.5",
     "@vitejs/plugin-vue-jsx": "^4.0.0",
     "sass-embedded": "^1.82.0",
-    "typescript": "^5.6.2",
+    "typescript": "5.6.2",
+    "vue-tsc": "2.0.29",
     "unocss": "^0.62.3",
     "vite": "^5.3.1",
     "vite-plugin-vue-devtools": "^7.4.5",
-    "vite-svg-loader": "^5.1.0",
-    "vue-tsc": "^2.0.29"
+    "vite-svg-loader": "^5.1.0"
   }
 }
