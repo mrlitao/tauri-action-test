@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { reactive, ref } from "vue";
 import tauriHttp from '@/utils/http/tauri-http.ts';
-import { fetch } from '@tauri-apps/plugin-http';
+// import { fetch } from '@tauri-apps/plugin-http';
 
 const greetMsg = ref("");
 const greetError = ref("");
