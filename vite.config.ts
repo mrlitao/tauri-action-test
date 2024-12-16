@@ -1,23 +1,25 @@
 import { defineConfig, loadEnv } from "vite";
-import vue from "@vitejs/plugin-vue";
+import { resolve } from 'node:path'
+import createPlugins from './build/plugins'
 
-// @ts-expect-error process is a nodejs global
 const host = process.env.TAURI_DEV_HOST;
 /** 启动`node`进程时所在工作目录的绝对路径 */
-// @ts-expect-error process is a nodejs global
 const root: string = process.cwd()
 
 // https://vitejs.dev/config/
 export default defineConfig(async ({ mode }) => {
-// @ts-expect-error process is a nodejs global
   console.log({ mode, root, host, env: process.cwd() });
-  
-  const {  VITE_API_BASE_URL } = loadEnv(mode, root)
-  console.log({ VITE_API_BASE_URL });
-  
+  const env = loadEnv(mode, root);
+
   return {
-    plugins: [vue()],
-  
+    plugins: createPlugins(env),
+    resolve: {
+      // alias: createAlias(),
+      alias: {
+        '@': resolve(__dirname, './src'),
+        // "@": resolve(dirname(fileURLToPath(import.meta.url)), 'src')
+      }
+    },
     // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`
     //
     // 1. prevent vite from obscuring rust errors
@@ -29,10 +31,10 @@ export default defineConfig(async ({ mode }) => {
       host: host || false,
       hmr: host
         ? {
-            protocol: "ws",
-            host,
-            port: 1421,
-          }
+          protocol: "ws",
+          host,
+          port: 1421,
+        }
         : undefined,
       watch: {
         // 3. tell vite to ignore watching `src-tauri`
