@@ -1,5 +1,5 @@
-import { getAllWindows, getCurrentWindow } from '@tauri-apps/api/window'
-import { WebviewWindow, getAllWebviewWindows, getCurrentWebviewWindow } from '@tauri-apps/api/webviewWindow'
+import { getCurrentWindow } from '@tauri-apps/api/window'
+import { WebviewWindow } from '@tauri-apps/api/webviewWindow'
 // import { relaunch, exit } from '@tauri-apps/plugin-process'
 
 // types
