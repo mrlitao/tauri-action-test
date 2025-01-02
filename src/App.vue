@@ -1,39 +1,18 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
+// components
+import SignIn from '@/components/SignIn/index.vue'
 const route = useRoute()
-
+import CustomTitlebar from "@/components/Titlebar/index.vue";
 </script>
 
 <template>
-  <main class="container">
-    <h3 class="title">Welcome to Tauri + Vue {{ route.meta?.title }}</h3>
+  <el-config-provider>
+    <custom-titlebar></custom-titlebar>
     <div class="content">
+      <sign-in />
+      <h3 class="title">Welcome to Tauri + Vue {{ route.meta?.title }}</h3>
       <router-view></router-view>
     </div>
-  </main>
+  </el-config-provider>
 </template>
-
-<style scoped lang="scss">
-.container {
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-
-  .title {
-    margin: 0;
-    height: 40px;
-    width: 100%;
-    text-align: center;
-    line-height: 40px;
-    font-weight: bold;
-    font-size: 20px;
-  }
-
-  .content {
-    min-height: 0;
-    flex: 1;
-  }
-}
-</style>

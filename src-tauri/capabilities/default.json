@@ -15,18 +15,27 @@
     "core:webview:allow-set-webview-size",
     "core:window:allow-create",
     "core:window:default",
+    "core:window:allow-start-dragging",
+    "core:window:allow-set-fullscreen",
+    "core:window:allow-minimize",
+    "core:window:allow-close",
     "core:app:default",
     {
-			"identifier": "http:default",
-			"allow": [{
-				"url": "https://mock.mengxuegu.com/mock/*"
-			},{
-				"url": "http://192.168.11.18:8092/*"
-			}],
-			"deny": [{
-				"url": "https://private.tauri.app"
-			}]
-		}
+      "identifier": "http:default",
+      "allow": [
+        {
+          "url": "https://mock.mengxuegu.com/mock/*"
+        },
+        {
+          "url": "http://192.168.11.18:8091/*"
+        }
+      ],
+      "deny": [
+        {
+          "url": "https://private.tauri.app"
+        }
+      ]
+    }
   ],
   "proxy": {
     "all": true,

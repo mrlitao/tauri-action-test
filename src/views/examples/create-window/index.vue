@@ -46,7 +46,8 @@ const createWebviewWindow = async () => {
   const win = await createTauriWindow({
     label: 'my-label',
     title: 'Title',
-    url: 'https://github.com/tauri-apps/tauri',
+    // url: 'https://github.com/tauri-apps/tauri',
+    url: '/tauri-window.html',
     width: 600,
     height: 600,
     x: 200,
@@ -66,7 +67,7 @@ const createWebviewWindow = async () => {
 const activeConfigWindow = () => {
   //这个appWindow.hide();是实现登录之后隐藏（关闭）登录界面，然后再显示新打开的test界面
   //appWindow.hide();
-  const testWindow = WebviewWindow.getByLabel("external");//这里就是获取label
+  const testWindow = WebviewWindow.getByLabel("doc");//这里就是获取label
   console.log({ testWindow });
   // testWindow.show();
 }

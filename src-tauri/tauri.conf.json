@@ -14,9 +14,12 @@
       {
         "label": "main",
         "title": "Tauri App Main",
-        "url": "index.html"
+        "url": "index.html",
+        "decorations": false,
+        "transparent": true
       }
     ],
+    "macOSPrivateApi": true,
     "security": {
       "csp": null
     }
