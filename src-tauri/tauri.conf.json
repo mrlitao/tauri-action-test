@@ -5,17 +5,17 @@
   "identifier": "com.vite-vue-tauri-app.app",
   "build": {
     "beforeDevCommand": "pnpm dev",
-    "devUrl": "http://localhost:1420",
     "beforeBuildCommand": "pnpm build",
+    "devUrl": "http://localhost:1420",
     "frontendDist": "../dist"
   },
   "app": {
     "windows": [
       {
         "label": "main",
-        "title": "Tauri App Main",
+        "title": "APP",
         "url": "index.html",
-        "decorations": false,
+        "decorations": true,
         "transparent": true
       }
     ],

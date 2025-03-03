@@ -15,8 +15,7 @@ import ViteSvgLoader from 'vite-svg-loader'
 // types
 import type { PluginOption } from 'vite'
 
-export default (env: any): PluginOption[] => {
-	console.log({ nodeEnv: process.env, env })
+export default (mode: string, env: any): PluginOption[] => {
 	const plugins = [
 		vue(),
 		vueJsx(),
@@ -26,7 +25,7 @@ export default (env: any): PluginOption[] => {
 		}),
 		ViteSvgLoader(),
 	]
-	if (env.VITE_ENV !== 'production') plugins.push(VueDevTools() as any)
+	if (mode !== 'production') plugins.push(VueDevTools() as any)
 
 	return plugins
 }

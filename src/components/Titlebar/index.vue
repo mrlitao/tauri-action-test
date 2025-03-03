@@ -68,7 +68,7 @@ const titlebars = computed(() => {
   }
   return [TITLEBAR_MINIMIZE, TITLEBAR_FULLSCREEN, TITLEBAR_CLOSE]
 })
-
+// TODO 弹窗出现时，titlebar 被遮住
 onBeforeUnmount(watchY)
 </script>
 <style lang="scss">

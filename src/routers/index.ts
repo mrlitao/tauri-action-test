@@ -8,7 +8,6 @@ const adminChildrens: Record<string, any> = import.meta.glob(
 const formatRoutes = (routes: Record<string, any>) => {
   console.log({ routes });
   return Object.keys(routes).map(key => {
-    console.log({ routes, key });
     const value = routes[key].default
     return Array.isArray(value) ? value.map(item => item) : value
   }).flat(2)

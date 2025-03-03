@@ -1,10 +1,12 @@
 <script setup lang="ts" name="SignIn">
-import { reactive } from "vue";
+import { computed, reactive } from "vue";
 import { User, Lock } from '@element-plus/icons-vue'
 import { loginState, login } from '@/srores/user.hook'
 
 import { logo, name } from '@/PlatformConfiguration/index.ts'
 
+
+const PlatformConfigurationName = computed(() => name)
 const formObject = reactive({
   name: 'admin',
   password: '123456'
@@ -29,7 +31,7 @@ const loginHandle = () => {
       <div class="flex flex-col items-center justify-center">
         <!--          <logo ></logo>-->
         <component :is="logo" viewBox="0 0 206 231" width="60" height="60"></component>
-        <span class="mt-4 font-bold text-3xl">{{ name }}</span>
+        <span class="mt-4 font-bold text-3xl">{{ PlatformConfigurationName }}</span>
       </div>
     </template>
     <div class="p-4 flex flex-col sign-in-content">

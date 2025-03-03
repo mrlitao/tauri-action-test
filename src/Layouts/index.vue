@@ -5,8 +5,7 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 const paths = computed(() => {
   const routes = router.options.routes || [] // router.getRoutes()
-  const layoutChildren = routes.find(item => item?.path?.startsWith('/admin'))?.children || []
-  return layoutChildren
+  return routes.find(item => item?.path?.startsWith('/admin'))?.children ?? []
 })
 
 </script>
@@ -14,7 +13,7 @@ const paths = computed(() => {
   <div class="layout">
     <div>
       <span v-for="item in paths" :key="item.path">
-        <router-link style="margin: .5em 1em;" :to="item.path">{{ item.meta?.title }}</router-link>
+        <router-link class="router-link" style="margin: .5em 1em;" :to="item.path">{{ item.meta?.title }}</router-link>
         <span v-if="item.children">
           <span v-for="child in item.children" :key="child.path">
             <router-link style="margin:.5em 1em;" :to="child.path">{{ child.meta?.title }}</router-link>
@@ -38,7 +37,6 @@ const paths = computed(() => {
   flex-direction: column;
 }
 
-/* 下面我们会解释这些 class 是做什么的 */
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity .5s ease;
@@ -47,5 +45,9 @@ const paths = computed(() => {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+.router-link-exact-active {
+  color: var(--el-color-primary);
 }
 </style>
