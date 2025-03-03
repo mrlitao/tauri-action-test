@@ -25,7 +25,6 @@ export interface ExtendClientOptions extends ClientOptions {
 	baseUrl: string;
 }
 
-
 export const defaultClientOptions: ExtendClientOptions = {
 	baseUrl: import.meta.env.VITE_API_TAURI_HTTP_BASE_URL,
 	connectTimeout: 1500,

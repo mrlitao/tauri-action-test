@@ -1,7 +1,13 @@
 <template>
   <transition name="fate-slider-y-30">
-    <div v-show="show" class="titlebar" data-tauri-drag-region>
-      <component v-for="(item, i) in titlebars" :key="i" :is="item.icon" class="titlebar-svg" @click="item.event" />
+    <div v-show="show" class="titleBar" data-tauri-drag-region>
+      <component
+        v-for="(item, i) in titleBars"
+        :key="i"
+        :is="item.icon"
+        class="title-bar-svg"
+        @click="item.event"
+      />
     </div>
   </transition>
 </template>
@@ -10,37 +16,32 @@ import { ref, computed, watch, onBeforeUnmount } from "vue";
 import { Window } from '@tauri-apps/api/window';
 import { useMouse } from '@vueuse/core'
 
-import TitlebarMinimize from "./svg/titlebar-minimize.svg"
-import TitlebarFullscreen from "./svg/titlebar-fullscreen.svg"
-import TitlebarFullscreenActive from "./svg/titlebar-fullscreen-active.svg"
-import TitlebarClose from "./svg/titlebar-close.svg"
-
+import TitleBarMinimize from "./svg/titlebar-minimize.svg"
+import TitleBarFullscreen from "./svg/titlebar-fullscreen.svg"
+import TitleBarFullscreenActive from "./svg/titlebar-fullscreen-active.svg"
+import TitleBarClose from "./svg/titlebar-close.svg"
 
 const appWindow = new Window('main');
 const localIsFullscreen = ref(false);
 const show = ref(false);
 console.log({ appWindow });
 
-const { x, y, sourceType } = useMouse({ touch: false })
+const { y, sourceType } = useMouse({ touch: false })
 const watchY = watch(y, () => {
   if (sourceType.value === 'mouse') {
-    if (y.value < 24) {
-      show.value = true;
-    } else {
-      show.value = false;
-    }
+    show.value = y.value < 24;
   }
 })
 
-const TITLEBAR_MINIMIZE = {
-  icon: TitlebarMinimize,
+const TITLE_BAR_MINIMIZE = {
+  icon: TitleBarMinimize,
   title: "最小化",
   event() {
     appWindow.minimize();
   }
 }
-const TITLEBAR_FULLSCREEN = {
-  icon: TitlebarFullscreenActive,
+const TITLE_BAR_FULLSCREEN = {
+  icon: TitleBarFullscreenActive,
   title: "全屏",
   event: async () => {
     const isFullscreen = await appWindow.isFullscreen();
@@ -49,26 +50,28 @@ const TITLEBAR_FULLSCREEN = {
       isFullscreen,
       aaa: localIsFullscreen.value
     });
-    appWindow.setFullscreen(localIsFullscreen.value);
+    await appWindow.setFullscreen(localIsFullscreen.value);
   }
 }
-const TITLEBAR_CLOSE = {
-  icon: TitlebarClose,
+const TITLE_BAR_CLOSE = {
+  icon: TitleBarClose,
   title: "关闭",
   event() {
     appWindow.close();
   }
 }
 
-const titlebars = computed(() => {
+const titleBars = computed(() => {
   if (localIsFullscreen.value) {
-    TITLEBAR_FULLSCREEN.icon = TitlebarFullscreenActive;
+    // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+    TITLE_BAR_FULLSCREEN.icon = TitleBarFullscreenActive;
   } else {
-    TITLEBAR_FULLSCREEN.icon = TitlebarFullscreen;
+    // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+    TITLE_BAR_FULLSCREEN.icon = TitleBarFullscreen;
   }
-  return [TITLEBAR_MINIMIZE, TITLEBAR_FULLSCREEN, TITLEBAR_CLOSE]
+  return [TITLE_BAR_MINIMIZE, TITLE_BAR_FULLSCREEN, TITLE_BAR_CLOSE]
 })
-// TODO 弹窗出现时，titlebar 被遮住
+// TODO 弹窗出现时，titleBar 被遮住
 onBeforeUnmount(watchY)
 </script>
 <style lang="scss">
@@ -83,8 +86,8 @@ onBeforeUnmount(watchY)
   transform: translateY(-24px);
 }
 
-.titlebar {
-  --titlebar-height: 24px;
+.title-bar {
+  --title-bar-height: 24px;
   box-sizing: border-box;
   overflow: hidden;
   position: fixed;
@@ -95,7 +98,7 @@ onBeforeUnmount(watchY)
   padding: 2px 8px;
   border-top-left-radius: var(--normal-radius);
   border-top-right-radius: var(--normal-radius);
-  line-height: var(--titlebar-height);
+  line-height: var(--title-bar-height);
   display: flex;
   justify-content: end;
   align-items: center;
@@ -114,7 +117,7 @@ onBeforeUnmount(watchY)
       background-color: #7f00f7;
       cursor: grabbing;
 
-      .titlebar-svg {
+      .title-bar-svg {
         color: #FFFFFF;
 
       }

@@ -26,20 +26,19 @@ const createWebview = async () => {
 
   webview.once('tauri://created', function () {
     // webview successfully created
-    console.log('webview created');
-    
-  });
+
+  }).then();
   webview.once('tauri://error', function (e) {
     // an error happened creating the webview
     console.log('webview error', e);
     
-  });
+  }).then();
 
   // emit an event to the backend
   await webview.emit("some-event", "data");
   // listen to an event from the backend
-  const unlisten = await webview.listen("event-name", _e => { });
-  unlisten();
+  const unListen = await webview.listen("event-name", () => { });
+  unListen();
 }
 
 const createWebviewWindow = async () => {
@@ -74,9 +73,15 @@ const activeConfigWindow = () => {
 </script>
 <template>
   <div>
-    <button @click="createWebviewWindow">创建 WebviewWindow 窗口</button>
-    <button @click="createWebview">创建 Webview 窗口</button>
-    <button @click="activeConfigWindow">config 配置的窗口</button>
+    <button @click="createWebviewWindow">
+      创建 WebviewWindow 窗口
+    </button>
+    <button @click="createWebview">
+      创建 Webview 窗口
+    </button>
+    <button @click="activeConfigWindow">
+      config 配置的窗口
+    </button>
   </div>
 </template>
 
