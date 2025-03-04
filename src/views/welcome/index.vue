@@ -15,7 +15,9 @@ console.log({ loginState, viewState });
     </div>
     <div class="w-full text-center">
       <el-tooltip content="退出登录后，将清除 token 等，并激活登录窗口">
-        <el-button type="danger" link @click="logout">退出登录</el-button>
+        <el-button type="danger" link @click="logout">
+          退出登录
+        </el-button>
       </el-tooltip>
     </div>
   </div>

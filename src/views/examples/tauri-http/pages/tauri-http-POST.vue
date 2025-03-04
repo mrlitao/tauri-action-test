@@ -33,7 +33,9 @@ const loginHandle = () => {
       <el-form-item label="密码">
         <el-input v-model="formObject.password" placeholder="Enter a name..." />
       </el-form-item>
-      <el-button type="primary" @click="loginHandle">登录试试</el-button>
+      <el-button type="primary" @click="loginHandle">
+        登录试试
+      </el-button>
     </el-form>
     <p>response: {{ greetMsg }}</p>
     <p>error：{{ greetError }}</p>

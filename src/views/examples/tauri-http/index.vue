@@ -12,10 +12,15 @@ const active = TABS[0].name
 <template>
   <div class="p-2">
     <el-tabs v-model="active">
-    <el-tab-pane v-for="item in TABS" :key="item.name" :name="item.name" :label="item.laebl">
-      <component :is="item.is"></component>
-    </el-tab-pane>
-  </el-tabs>
+      <el-tab-pane
+        v-for="item in TABS"
+        :key="item.name"
+        :name="item.name"
+        :label="item.laebl"
+      >
+        <component :is="item.is" />
+      </el-tab-pane>
+    </el-tabs>
   </div>
 </template>
 

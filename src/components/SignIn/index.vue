@@ -5,7 +5,6 @@ import { loginState, login } from '@/srores/user.hook'
 
 import { logo, name } from '@/PlatformConfiguration/index.ts'
 
-
 const PlatformConfigurationName = computed(() => name)
 const formObject = reactive({
   name: 'admin',
@@ -21,16 +20,21 @@ const loginHandle = () => {
 </script>
 <template>
   <el-dialog
-      v-model="loginState.notSignedIn"
-      width="600px"
-      :show-close="false"
-      :close-on-click-modal="false"
-      class="sign-in-dialog"
+    v-model="loginState.notSignedIn"
+    width="600px"
+    :show-close="false"
+    :close-on-click-modal="false"
+    class="sign-in-dialog"
   >
     <template #header>
       <div class="flex flex-col items-center justify-center">
         <!--          <logo ></logo>-->
-        <component :is="logo" viewBox="0 0 206 231" width="60" height="60"></component>
+        <component
+          :is="logo"
+          viewBox="0 0 206 231"
+          width="60"
+          height="60"
+        />
         <span class="mt-4 font-bold text-3xl">{{ PlatformConfigurationName }}</span>
       </div>
     </template>
@@ -38,21 +42,23 @@ const loginHandle = () => {
       <el-form class="px-[120px] box-border m-x-[auto] w-full always-full-y" :model="formObject" label-width="0">
         <el-form-item>
           <el-input
-              id="greet-input"
-              v-model="formObject.name"
-              :prefix-icon="User"
-              placeholder="Enter a name..."
+            id="greet-input"
+            v-model="formObject.name"
+            :prefix-icon="User"
+            placeholder="Enter a name..."
           />
         </el-form-item>
         <el-form-item>
           <el-input
-              v-model="formObject.password"
-              :prefix-icon="Lock"
-              placeholder="登录密码"
+            v-model="formObject.password"
+            :prefix-icon="Lock"
+            placeholder="登录密码"
           />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" class="m-x-[auto]" @click="loginHandle">登录</el-button>
+          <el-button type="primary" class="m-x-[auto]" @click="loginHandle">
+            登录
+          </el-button>
         </el-form-item>
       </el-form>
     </div>

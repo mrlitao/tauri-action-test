@@ -9,8 +9,10 @@ const route = useRoute()
   <el-config-provider>
     <div class="content">
       <sign-in />
-      <h3 class="title">Welcome to Tauri + Vue {{ route.meta?.title }}</h3>
-      <router-view></router-view>
+      <h3 class="title">
+        Welcome to Tauri + Vue {{ route.meta?.title }}
+      </h3>
+      <router-view />
     </div>
   </el-config-provider>
 </template>

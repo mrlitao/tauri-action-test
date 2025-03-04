@@ -15,8 +15,10 @@ async function greet() {
   <div>
     <p>Click on the Tauri, Vite, and Vue logos to learn more.</p>
     <form class="row" @submit.prevent="greet">
-      <input id="greet-input" v-model="name" placeholder="Enter a name..." />
-      <button type="submit">Greet</button>
+      <input id="greet-input" v-model="name" placeholder="Enter a name...">
+      <button type="submit">
+        Greet
+      </button>
     </form>
     <p>{{ greetMsg }}</p>
   </div>

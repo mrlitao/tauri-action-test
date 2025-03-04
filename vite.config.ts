@@ -9,16 +9,15 @@ const host = process.env.TAURI_DEV_HOST;
 const root: string = process.cwd();
 
 // https://vitejs.dev/config/
-export default defineConfig(async ({ mode }) => {
-	console.log({ mode, root, host, aaa: import.meta.url });
+export default defineConfig(async ({ mode, command }) => {
+	console.log({ mode, root, host, command, url: import.meta.url });
 	const env = loadEnv(mode, root);
-	console.log({ env, VITE_PROXY: typeof env.VITE_PROXY });
 	return {
 		plugins: createPlugins(mode, env),
 		resolve: {
 			// alias: createAlias(),
 			alias: {
-				...createAlias(),
+				...createAlias(root),
 				"@": resolve(__dirname, "./src")
 				// "@": resolve(dirname(fileURLToPath(import.meta.url)), 'src')
 			}
@@ -50,5 +49,14 @@ export default defineConfig(async ({ mode }) => {
 				},
 			},
 		},
+		build: {
+			rollupOptions: {
+				input: {
+					index: resolve(__dirname, "index.html"),
+					"window-component": resolve(__dirname, "window-component.html"),
+					"window-other-component": resolve(__dirname, "new-windows/window-component.html")
+				},
+			}
+		}
 	};
 });

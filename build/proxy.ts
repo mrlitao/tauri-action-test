@@ -15,7 +15,6 @@ export function createProxy(list: ProxyList = []) {
   for (const [prefix, target] of list) {
     const httpsRE = /^https:\/\//;
     const isHttps = httpsRE.test(target);
-    console.log({ prefix, target, isHttps });
     // https://github.com/http-party/node-http-proxy#options
     ret[prefix] = {
       target: target,

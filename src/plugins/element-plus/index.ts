@@ -63,7 +63,6 @@ ElDialog.props.alignCenter = { type: Boolean, default: true }; // 默认水平�
 ElDialog.props.draggable = { type: Boolean, default: true };
 ElDialog.props.width = { type: [String, Number], default: "600px" };
 
-
 const plugins = [
 	ElMessage,
 	ElMessageBox

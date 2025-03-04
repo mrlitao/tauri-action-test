@@ -25,17 +25,22 @@ export interface ExtendClientOptions extends ClientOptions {
 	baseUrl: string;
 }
 
+/** 默认客户端选项 */
 export const defaultClientOptions: ExtendClientOptions = {
 	baseUrl: import.meta.env.VITE_API_TAURI_HTTP_BASE_URL,
 	connectTimeout: 1500,
 	// proxy: {}
 };
-
+/** 默认headers选项 */
 export const defaultHeaders: Headers = {
 	"Content-Type": "application/json",
 	// 'Content-Type': 'application/x-www-form-urlencoded',
-};
+	// 流式类型
 
+	// "Accept": "application/json",
+	// "Access-Control-Allow-Origin": "*",
+};
+/** 默认拦截器 */
 export const defaultInterceptors: Interceptors<any> = {
 	request: (config) => {
 		console.log({ config });
@@ -69,7 +74,7 @@ export const defaultInterceptors: Interceptors<any> = {
 	}
 };
 
-class TauriHttp {
+export class TauriHttp {
 	clientOptions: ExtendClientOptions;
 	interceptors: Interceptors<any> = defaultInterceptors;
 
@@ -78,7 +83,7 @@ class TauriHttp {
 		this.clientOptions = clientOptions;
 	}
 
-	fetch(method: HttpMethod, url: string, options: any) {
+	fetch(method: HttpMethod, url: string, options: RequestInit & ClientOptions) {
 		const { baseUrl, ...restClientOptions } = this.clientOptions;
 		options.headers = Object.assign({}, defaultHeaders, options.headers);
 		options = this.interceptors.request(Object.assign({ method, mode: "cors" }, restClientOptions, options));

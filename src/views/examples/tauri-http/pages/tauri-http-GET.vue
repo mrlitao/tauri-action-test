@@ -30,7 +30,9 @@ const query = async () => {
 </script>
 <template>
   <div>
-    <el-button type="primary" @click="query">查询</el-button>
+    <el-button type="primary" @click="query">
+      查询
+    </el-button>
     <p>
       {{ httpResult }}
     </p>

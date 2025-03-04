@@ -24,7 +24,7 @@ const paths = computed(() => {
     <div style="min-height: 0; flex: 1;">
       <router-view v-slot="{ Component }">
         <transition name="fade" mode="out-in">
-          <component :is="Component"></component>
+          <component :is="Component" />
         </transition>
       </router-view>
     </div>

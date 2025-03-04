@@ -25,9 +25,11 @@ const loginHandle = async (params: any) => {
 <template>
   <div>
     <form class="row" @submit.prevent="loginHandle">
-      <input id="greet-input" v-model="name" placeholder="Enter a name..." />
-      <input v-model="password" placeholder="Enter a name..." />
-      <button type="submit">Greet</button>
+      <input id="greet-input" v-model="name" placeholder="Enter a name...">
+      <input v-model="password" placeholder="Enter a name...">
+      <button type="submit">
+        Greet
+      </button>
     </form>
     <p>response: {{ greetMsg }}</p>
     <p>error：{{ greetError }}</p>
