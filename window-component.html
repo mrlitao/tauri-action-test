@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Window Component</title>
+  <link rel="stylesheet" href="/src/styles/index.scss">
+</head>
+<body>
+  <div id="window-component"></div>
+  <script type="module">
+    import { createApp } from 'vue'
+    // import ElementPlus from 'element-plus'
+    import 'element-plus/dist/index.css'
+    import WindowComponent from '@/views/examples/window-component/index.vue'
+
+    const app = createApp(WindowComponent)
+    // app.use(ElementPlus)
+    app.mount('#window-component')
+  </script>
+</body>
+</html>
