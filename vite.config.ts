@@ -53,8 +53,8 @@ export default defineConfig(async ({ mode, command }) => {
 			rollupOptions: {
 				input: {
 					index: resolve(__dirname, "index.html"),
-					"window-component": resolve(__dirname, "window-component.html"),
-					"window-other-component": resolve(__dirname, "new-windows/window-component.html")
+					"window-component": resolve(__dirname, "window-component-html.html"),
+					"window-other-component": resolve(__dirname, "new-windows/window-component-html.html")
 				},
 			}
 		}

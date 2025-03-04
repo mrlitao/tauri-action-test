@@ -1,6 +1,6 @@
-import { createMemoryHistory, createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHashHistory, createWebHistory, RouteRecordRaw } from "vue-router";
 import Layout from '@/Layouts/index.vue'
-const adminChildrens: Record<string, any> = import.meta.glob(
+const adminChildren: Record<string, any> = import.meta.glob(
   ['./modules/**/*.ts'],
   { eager: true }
 )
@@ -24,16 +24,32 @@ const routes: RouteRecordRaw[] = [
       title: '后台管理',
       icon: 'el-icon-s-home',
     },
-    children: formatRoutes(adminChildrens)
+    children: formatRoutes(adminChildren)
   },
   {
     path: '/',
     redirect: '/admin',
   },
+  {
+    path: "/tauri-component-window",
+    component: () => import('@/views/examples/window-component/index.vue'),
+    meta: {
+      title: 'Tauri Window Component',
+      icon: 'el-icon-s-home',
+    },
+  },
+  {
+    path: "/404",
+    component: () => import('@/views/errors/404.vue'),
+  },
+  // {
+  //   path: "/:pathMatch(.*)*",
+  //   redirect: "/404",
+  // }
 ]
 
 const router = createRouter({
-  history: import.meta.env.DEV ? createWebHashHistory() : createMemoryHistory(),
+  history: import.meta.env.DEV ? createWebHashHistory() : createWebHistory(),
   // history: createWebHistory(),
   // routes: staticRoutes.concat(routes),
   routes,
@@ -48,7 +64,7 @@ const useRouter = (app: App) => {
 }
 
 export {
-  adminChildrens,
+  adminChildren,
   useRouter
 }
 
